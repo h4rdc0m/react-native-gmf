@@ -1,0 +1,22 @@
+{
+  "name": "react-native-gmf",
+  "description": "A Google Media Framwerk component for React Native",
+  "author": {
+    "email": "chris@trace.nl",
+    "name": "Christiaan Benedictus",
+    "url": "https://github.com/h4rdc0m"
+  },
+  "bugs": {
+    "url": "https://github.com/h4rdc0m/react-native-gmf/issues"
+  },
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/h4rdc0m/react-native-gmf.git"
+  },
+  "version": "0.0.1",
+  "homepage": "https://github.com/h4rdc0m/react-native-gmf#readme",
+  "devDependencies": {
+    "jest-cli": "^0.8.2"
+  }
+}
