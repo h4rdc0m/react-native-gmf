@@ -21,4 +21,9 @@ public class ReactGmfViewManager extends SimpleViewManager<ReactGmfView> {
     public String getName() {
         return REACT_CLASS;
     }
+
+    @Override
+    protected ReactGmfView createViewInstance(ThemedReactContext themedReactContext) {
+        return new ReactGmfView(themedReactContext);
+    }
 }
