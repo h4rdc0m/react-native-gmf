@@ -13,6 +13,12 @@ import java.util.List;
 
 public class ReactGmfPackage implements ReactPackage {
 
+    private Activity mActivity = null;
+
+    public ReactGmfPackage(Activity activity) {
+        mActivity = activity;
+    }
+
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
         return Collections.emptyList();
@@ -25,6 +31,6 @@ public class ReactGmfPackage implements ReactPackage {
 
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
-        return Arrays.<ViewManager>asList(new ReactGmfViewManager());
+        return Arrays.<ViewManager>asList(new ReactGmfViewManager(mActivity));
     }
 }

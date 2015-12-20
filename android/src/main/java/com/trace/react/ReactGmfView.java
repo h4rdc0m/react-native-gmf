@@ -1,42 +1,52 @@
 package com.trace.react;
 
+import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.util.Log;
+import android.view.SurfaceView;
+import android.view.TextureView;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.app.Activity;
+
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.uimanager.CatalystStylesDiffMap;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
+import com.google.android.libraries.mediaframework.exoplayerextensions.Video;
+import com.google.android.libraries.mediaframework.layeredvideo.SimpleVideoPlayer;
 
-public class ReactGmfView extends MediaPlayer implements MediaPlayer.OnPreparedListener, MediaPlayer
-        .OnErrorListener, MediaPlayer.OnBufferingUpdateListener, MediaPlayer.OnCompletionListener{
-  private ThemedReactContext mThemedReactContext;
-  private RCTEventEmitter mEventEmitter;
-
-  public ReactGmfView(ThemedReactContext themedReactContext) {
-    super(themedReactContext);
-
-    mThemedReactContext = themedReactContext;
-    mEventEmitter = themedReactContext.getJSModule(RCTEventEmitter.class);
+public class ReactGmfView extends FrameLayout {
+  private Activity mActivity;
+  private String mSource;
+  private Boolean mAutoplay = false;
+  private SimpleVideoPlayer mPlayer;
+  private Video mVideo;
+  public ReactGmfView(Context ctx, Activity activity, CatalystStylesDiffMap props) {
+    super(ctx, null);
+    mActivity = activity;
   }
 
-  @Override
-  public void onBufferingUpdate(MediaPlayer mp, int percent) {
-
+  public void setSource(String url) {
+    mSource = url;
+    mVideo = new Video(url, Video.VideoType.MP4);
   }
 
-  @Override
-  public void onCompletion(MediaPlayer mp) {
-
+  public String getSource() {
+    return mSource;
   }
 
-  @Override
-  public boolean onError(MediaPlayer mp, int what, int extra) {
-    return false;
+  public void setAutoplay(Boolean autoplay) {
+    mAutoplay = autoplay;
   }
 
-  @Override
-  public void onPrepared(MediaPlayer mp) {
+  public void showPlayer() {
 
+    mPlayer = new SimpleVideoPlayer(mActivity, this, mVideo, "Player", mAutoplay);
+    mPlayer.hideTopChrome();
+    mPlayer.show();
   }
 }
